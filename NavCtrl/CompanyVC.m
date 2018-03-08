@@ -7,9 +7,16 @@
 //
 
 #import "CompanyVC.h"
+#import "ProductVC.h"
 
-@interface CompanyVC ()
+@interface CompanyVC (){
+    
 
+  
+
+   ProductVC *productViewController;
+
+}
 @end
 
 @implementation CompanyVC
@@ -17,15 +24,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"CompanyVC viewDidLoad called");
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode)];
     self.navigationItem.rightBarButtonItem = editButton;
+    // this is where you add name in the table cell
+    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices", @"Nike", @"Adidas"];
     
     
-    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices"];
+    
+    //setting an array for image 
+    _compnayLogos =[[NSArray arrayWithObjects:
+                     
+                      [UIImage imageNamed:@"apple.png"],
+                      [UIImage imageNamed:@"samsung.png"],
+                      [UIImage imageNamed:@"adidas.png"],
+                      [UIImage imageNamed:@"nike.png"],
+                      nil] retain];
+    //the title inthe tableview on the top of the screen
     self.title = @"Mobile device makers";
     // Do any additional setup after loading the view from its nib.
+    
+//    NSDictionary *list = @{@"Companies"}
+    
+    
+    //contraint for the text label
+//    NSLayoutConstraint *horizantal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[apple]-7-|"
+//                                                                            options:0
+//                                                                            metrics:nil
+//                                                                              views:_companyList];
+//    
+//    [self.view addConstraint:horizantal];
+//                                     
+//                                     
+//                                     
+    
+    productViewController = [[ProductVC alloc] init];
+    [productViewController view];
+
+    
+    
 }
 
 - (void)toggleEditMode {
@@ -52,6 +92,7 @@
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
+    //it was retunr 1; before
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,12 +107,66 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
+        
     }
     
+    
+    // this code below here is another way of setting up the image but its a bit time to configure it
+    
     // Configure the cell...
+   
+    
+    //Creating the images
+    
+//    UIImage *apple =[UIImage imageNamed:@"apple.png"];
+//    UIImage *samsung = [UIImage imageNamed:@"samsung.png"];
+//    UIImage *nike =[UIImage imageNamed:@"nike.png"];
+//    UIImage *adidas =[UIImage imageNamed:@"adidas"];
+//
+    
+    
+    //setting up the images for each row
+//    
+//    
+//    switch (indexPath.row) {
+//        case 0:
+//            cell.imageView.image = apple;
+//            break;
+//        case 1:
+//            cell.imageView.image = samsung;
+//            break;
+//        case 2:
+//            cell.imageView.image = nike;
+//            break;
+//        case 3:
+//            cell.imageView.image = adidas;
+//            break;
+//        default:
+//            break;
+//    }
+    
+    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
+    cell.imageView.layer.cornerRadius = 8.0;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.clipsToBounds = YES;
+
+    
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
+    
+    //put the code upp in here
+    cell.imageView.image = [_compnayLogos objectAtIndex:indexPath.row];
+    //resixe uiimage
+
+    
+  //  cell.imageView.image = [UIImage imageNamed:  [self.companyListOfImages objectAtIndex:[indexPath row]] ];
+    
+    
+//    cell.textLabel.textAlignment = NSTextAlignmentRight;
     
     return cell;
 }
@@ -123,15 +218,50 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    self.productViewController = [[ProductVC alloc]init];
-    if (indexPath.row == 0){
-        self.productViewController.title = @"Apple mobile devices";
-    } else {
-        self.productViewController.title = @"Samsung mobile devices";
+//    ProductVC *subItems =[[ProductVC alloc] init];
+//    [subItems view];
+  
+   // productViewController = [[ProductVC alloc] init];
+     
+    
+//    subItems.view;
+    if (indexPath.row == 0 ){
+        
+       // [productViewController.products removeObjectAtIndex:0];
+        
+        productViewController.products = productViewController.item;
+       // [productViewController.products removeObjectAtIndex:0];
+        
+    }
+    if (indexPath.row == 1){
+        productViewController.products =  productViewController.item2;
     }
     
+    
+    if (indexPath.row == 2){
+        productViewController.products = productViewController.item3;
+    }
+    
+    if (indexPath.row == 3) {
+        productViewController.products = productViewController.item4;
+    }
+        //must have this line 243, otherwise you can't load a specific cell for different rows
+    [productViewController.tableView reloadData];
+
+    //    if (indexPath.row == 0){
+//        self.productViewController.title = @"Apple mobile devices";
+//    } else  if(indexPath.row ==1){
+//        self.productViewController.title = @"Samsung mobile devices";
+//
+//    } else if(indexPath.row ==2) {
+//        self.productViewController.title = @"Nike";
+//    }
+//    else if (indexPath.row ==3){
+//        self.productViewController.title = @"Adidas";
+//    }
+    productViewController.navigationItem.title = self.companyList[indexPath.row];
     [self.navigationController
-     pushViewController:self.productViewController
+     pushViewController:productViewController
      animated:YES];
     
 }
@@ -147,8 +277,25 @@
 }
 */
 
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"CompanyVC viewDidDisappear called");
+    
+}
+
 - (void)dealloc {
     [_tableView release];
     [super dealloc];
 }
 @end
+
+
+
+
+
+
+
+// NSArray *_tempArray = @[@"iPad", @"iPod Touch",@"iPhone"];
+
+// productViewController.products =  [NSMutableArray arrayWithArray:productViewController.item];
+// this code up here is a way to convert NSArray to NSMutableArray but it alos creat a seperate array, so keep that in mind 

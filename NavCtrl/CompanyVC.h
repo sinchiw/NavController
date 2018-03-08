@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductVC.h"
+@class ProductVC;
 
 @interface CompanyVC : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) NSArray *companyList;
-@property (nonatomic, retain) ProductVC *productViewController;
+@property (nonatomic, retain) NSArray *compnayLogos;
 
 @end
