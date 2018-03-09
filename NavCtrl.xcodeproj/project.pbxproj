@@ -25,6 +25,12 @@
 		9E62FF261E4A33F1002D55B8 /* ProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E62FF241E4A33F1002D55B8 /* ProductVC.m */; };
 		9E62FF271E4A33F1002D55B8 /* ProductVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E62FF251E4A33F1002D55B8 /* ProductVC.xib */; };
 		9E62FF291E4A3982002D55B8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */; };
+		CEE8BEC32036197000F856DB /* WKWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE8BEC12036197000F856DB /* WKWebVC.m */; };
+		CEE8BEC6203642F300F856DB /* WKWebVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE8BEC5203642F300F856DB /* WKWebVC.xib */; };
+		CEF3C0C020324F2E0030DC0C /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF3C0BC20324F2D0030DC0C /* apple.png */; };
+		CEF3C0C120324F2E0030DC0C /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF3C0BD20324F2E0030DC0C /* samsung.png */; };
+		CEF3C0C220324F2E0030DC0C /* adidas.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF3C0BE20324F2E0030DC0C /* adidas.png */; };
+		CEF3C0C320324F2E0030DC0C /* nike.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF3C0BF20324F2E0030DC0C /* nike.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,13 @@
 		9E62FF241E4A33F1002D55B8 /* ProductVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductVC.m; sourceTree = "<group>"; };
 		9E62FF251E4A33F1002D55B8 /* ProductVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductVC.xib; sourceTree = "<group>"; };
 		9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CEE8BEC02036197000F856DB /* WKWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebVC.h; sourceTree = "<group>"; };
+		CEE8BEC12036197000F856DB /* WKWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKWebVC.m; sourceTree = "<group>"; };
+		CEE8BEC5203642F300F856DB /* WKWebVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebVC.xib; sourceTree = "<group>"; };
+		CEF3C0BC20324F2D0030DC0C /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = ../../../../Downloads/apple.png; sourceTree = "<group>"; };
+		CEF3C0BD20324F2E0030DC0C /* samsung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = samsung.png; path = ../../../../Downloads/samsung.png; sourceTree = "<group>"; };
+		CEF3C0BE20324F2E0030DC0C /* adidas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = adidas.png; path = ../../../../Downloads/adidas.png; sourceTree = "<group>"; };
+		CEF3C0BF20324F2E0030DC0C /* nike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nike.png; path = ../../../../Downloads/nike.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +166,7 @@
 				483796CB1BCBF7A00062D5AB /* AppDelegate */,
 				483796CC1BCBF7C70062D5AB /* ParentViewController */,
 				483796CD1BCBF7EB0062D5AB /* ProductViewController */,
+				CEE8BEBF2036192900F856DB /* WKWebViewController */,
 				48A656C618163BF200746D36 /* Images.xcassets */,
 				48A656BB18163BF200746D36 /* Supporting Files */,
 			);
@@ -166,6 +180,10 @@
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
 				48A656C018163BF200746D36 /* main.m */,
+				CEF3C0BD20324F2E0030DC0C /* samsung.png */,
+				CEF3C0BC20324F2D0030DC0C /* apple.png */,
+				CEF3C0BE20324F2E0030DC0C /* adidas.png */,
+				CEF3C0BF20324F2E0030DC0C /* nike.png */,
 				48A656C218163BF200746D36 /* NavCtrl-Prefix.pch */,
 				9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */,
 			);
@@ -188,6 +206,16 @@
 				48A656D618163BF200746D36 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEE8BEBF2036192900F856DB /* WKWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEE8BEC02036197000F856DB /* WKWebVC.h */,
+				CEE8BEC12036197000F856DB /* WKWebVC.m */,
+				CEE8BEC5203642F300F856DB /* WKWebVC.xib */,
+			);
+			path = WKWebViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +263,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = qcdDemo;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Aditya Narayan";
 				TargetAttributes = {
 					48A656CB18163BF200746D36 = {
@@ -268,9 +296,14 @@
 			files = (
 				9E62FF291E4A3982002D55B8 /* Launch Screen.storyboard in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
+				CEE8BEC6203642F300F856DB /* WKWebVC.xib in Resources */,
+				CEF3C0C120324F2E0030DC0C /* samsung.png in Resources */,
 				9E62FF221E4A33DC002D55B8 /* CompanyVC.xib in Resources */,
+				CEF3C0C220324F2E0030DC0C /* adidas.png in Resources */,
 				9E62FF271E4A33F1002D55B8 /* ProductVC.xib in Resources */,
+				CEF3C0C320324F2E0030DC0C /* nike.png in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
+				CEF3C0C020324F2E0030DC0C /* apple.png in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +326,7 @@
 				9E62FF211E4A33DC002D55B8 /* CompanyVC.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
+				CEE8BEC32036197000F856DB /* WKWebVC.m in Sources */,
 				9E62FF261E4A33F1002D55B8 /* ProductVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,14 +377,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -388,14 +428,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
