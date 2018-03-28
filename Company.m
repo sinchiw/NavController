@@ -10,4 +10,13 @@
 
 @implementation Company
 
+-(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo{
+    self =[super init];
+    self.name = name;
+    self.logo = logo;
+   // self.logo = logo
+    
+    return self;
+}
+
 @end

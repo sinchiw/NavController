@@ -25,6 +25,12 @@
 		9E62FF261E4A33F1002D55B8 /* ProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E62FF241E4A33F1002D55B8 /* ProductVC.m */; };
 		9E62FF271E4A33F1002D55B8 /* ProductVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E62FF251E4A33F1002D55B8 /* ProductVC.xib */; };
 		9E62FF291E4A3982002D55B8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */; };
+		CE776BB72059A0C800A7F15A /* iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = CE776BB42059A0C700A7F15A /* iPhone.png */; };
+		CE776BB82059A0C800A7F15A /* iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = CE776BB52059A0C800A7F15A /* iPad.png */; };
+		CE776BB92059A0C800A7F15A /* ipodtouch.png in Resources */ = {isa = PBXBuildFile; fileRef = CE776BB62059A0C800A7F15A /* ipodtouch.png */; };
+		CEB45134205C2C3F0085A1FC /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB45133205C2C3F0085A1FC /* DataAccess.m */; };
+		CEBCDE172056DC73004A84E7 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBCDE162056DC73004A84E7 /* Company.m */; };
+		CEBCDE1A2056DD5B004A84E7 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBCDE192056DD5B004A84E7 /* Product.m */; };
 		CEE8BEC32036197000F856DB /* WKWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE8BEC12036197000F856DB /* WKWebVC.m */; };
 		CEE8BEC6203642F300F856DB /* WKWebVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE8BEC5203642F300F856DB /* WKWebVC.xib */; };
 		CEF3C0C020324F2E0030DC0C /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF3C0BC20324F2D0030DC0C /* apple.png */; };
@@ -68,6 +74,15 @@
 		9E62FF241E4A33F1002D55B8 /* ProductVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductVC.m; sourceTree = "<group>"; };
 		9E62FF251E4A33F1002D55B8 /* ProductVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductVC.xib; sourceTree = "<group>"; };
 		9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CE776BB42059A0C700A7F15A /* iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone.png; path = ../../../../Downloads/iPhone.png; sourceTree = "<group>"; };
+		CE776BB52059A0C800A7F15A /* iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad.png; path = ../../../../Downloads/iPad.png; sourceTree = "<group>"; };
+		CE776BB62059A0C800A7F15A /* ipodtouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipodtouch.png; path = ../../../../Downloads/ipodtouch.png; sourceTree = "<group>"; };
+		CEB45132205C2C3F0085A1FC /* DataAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
+		CEB45133205C2C3F0085A1FC /* DataAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataAccess.m; sourceTree = "<group>"; };
+		CEBCDE152056DC73004A84E7 /* Company.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		CEBCDE162056DC73004A84E7 /* Company.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		CEBCDE182056DD5B004A84E7 /* Product.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		CEBCDE192056DD5B004A84E7 /* Product.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		CEE8BEC02036197000F856DB /* WKWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebVC.h; sourceTree = "<group>"; };
 		CEE8BEC12036197000F856DB /* WKWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKWebVC.m; sourceTree = "<group>"; };
 		CEE8BEC5203642F300F856DB /* WKWebVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebVC.xib; sourceTree = "<group>"; };
@@ -133,6 +148,12 @@
 		48A656A818163BF200746D36 = {
 			isa = PBXGroup;
 			children = (
+				CEBCDE182056DD5B004A84E7 /* Product.h */,
+				CEBCDE192056DD5B004A84E7 /* Product.m */,
+				CEBCDE152056DC73004A84E7 /* Company.h */,
+				CEBCDE162056DC73004A84E7 /* Company.m */,
+				CEB45132205C2C3F0085A1FC /* DataAccess.h */,
+				CEB45133205C2C3F0085A1FC /* DataAccess.m */,
 				48A656BA18163BF200746D36 /* NavCtrl */,
 				48A656D318163BF200746D36 /* NavCtrlTests */,
 				48A656B318163BF200746D36 /* Frameworks */,
@@ -179,6 +200,9 @@
 				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
+				CE776BB52059A0C800A7F15A /* iPad.png */,
+				CE776BB42059A0C700A7F15A /* iPhone.png */,
+				CE776BB62059A0C800A7F15A /* ipodtouch.png */,
 				48A656C018163BF200746D36 /* main.m */,
 				CEF3C0BD20324F2E0030DC0C /* samsung.png */,
 				CEF3C0BC20324F2D0030DC0C /* apple.png */,
@@ -266,6 +290,9 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Aditya Narayan";
 				TargetAttributes = {
+					48A656B018163BF200746D36 = {
+						DevelopmentTeam = G9Q29J355M;
+					};
 					48A656CB18163BF200746D36 = {
 						TestTargetID = 48A656B018163BF200746D36;
 					};
@@ -299,12 +326,15 @@
 				CEE8BEC6203642F300F856DB /* WKWebVC.xib in Resources */,
 				CEF3C0C120324F2E0030DC0C /* samsung.png in Resources */,
 				9E62FF221E4A33DC002D55B8 /* CompanyVC.xib in Resources */,
+				CE776BB72059A0C800A7F15A /* iPhone.png in Resources */,
 				CEF3C0C220324F2E0030DC0C /* adidas.png in Resources */,
+				CE776BB92059A0C800A7F15A /* ipodtouch.png in Resources */,
 				9E62FF271E4A33F1002D55B8 /* ProductVC.xib in Resources */,
 				CEF3C0C320324F2E0030DC0C /* nike.png in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				CEF3C0C020324F2E0030DC0C /* apple.png in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
+				CE776BB82059A0C800A7F15A /* iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,11 +353,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBCDE1A2056DD5B004A84E7 /* Product.m in Sources */,
 				9E62FF211E4A33DC002D55B8 /* CompanyVC.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
+				CEB45134205C2C3F0085A1FC /* DataAccess.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				CEE8BEC32036197000F856DB /* WKWebVC.m in Sources */,
 				9E62FF261E4A33F1002D55B8 /* ProductVC.m in Sources */,
+				CEBCDE172056DC73004A84E7 /* Company.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				DEVELOPMENT_TEAM = G9Q29J355M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
@@ -486,6 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				DEVELOPMENT_TEAM = G9Q29J355M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";

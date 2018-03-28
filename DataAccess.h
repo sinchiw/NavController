@@ -7,7 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Product.h"
+#import "Company.h"
 
 @interface DataAccess : NSObject
+
+
+@property (nonatomic, retain) NSMutableArray<Company*> *listOfCompanies;
+//@property (nonatomic, retain) NSMutableArray<Product*> *listOfProduct;
++(DataAccess *) dataAccess;
+
+//-(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo;
+//
+//-(instancetype) initWithProductName:(NSString*)productName andProductURL:(NSString*) productURL;
+
+
+//+(instancetype)productsNames;
+
+
 
 @end

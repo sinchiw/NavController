@@ -8,9 +8,13 @@
 
 #import "CompanyVC.h"
 #import "ProductVC.h"
+#import "Company.h"
+#import "Product.h"
+#import "DataAccess.h"
 
 @interface CompanyVC (){
-    
+
+    DataAccess *dataAccess;
 
   
 
@@ -26,28 +30,38 @@
     
     NSLog(@"CompanyVC viewDidLoad called");
     
+    dataAccess = [DataAccess dataAccess];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode)];
     self.navigationItem.rightBarButtonItem = editButton;
     // this is where you add name in the table cell
-    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices", @"Nike", @"Adidas"];
+   // self.companyList = [NSMutableArray arrayWithObjects: @"Apple mobile devices",@"Samsung mobile devices", @"Nike", @"Adidas",nil];
+    // this format is easier than the one below it
+//    Company *apple = [[Company alloc]initWithName:@"Apple mobile devices" andLogo:@"apple.png"];
+////    apple.name = @"Apple mobile devices";
+////    apple.logo = @"apple.png";
+//
+//    Company *samsung = [[Company alloc]initWithName:@"Samsung mobile devices" andLogo:@"samsung.png"];
+//
+//
+//    Company *nike =[[[Company alloc] init]initWithName:@"Nike" andLogo:@"nike.png"];
+//
+//    Company *adidas = [[Company alloc] initWithName:@"Adidas" andLogo:@"adidas.png"];
+//
+//
+//    self.listOfCompanies = [NSMutableArray arrayWithObjects:apple, samsung, nike, adidas, nil];
+//
     
     
     
-    //setting an array for image 
-    _compnayLogos =[[NSArray arrayWithObjects:
-                     
-                      [UIImage imageNamed:@"apple.png"],
-                      [UIImage imageNamed:@"samsung.png"],
-                      [UIImage imageNamed:@"adidas.png"],
-                      [UIImage imageNamed:@"nike.png"],
-                      nil] retain];
+ 
     //the title inthe tableview on the top of the screen
-    self.title = @"Mobile device makers";
+    self.title = @"Stock Tracker";
     // Do any additional setup after loading the view from its nib.
     
-//    NSDictionary *list = @{@"Companies"}
+    
     
     
     //contraint for the text label
@@ -56,10 +70,7 @@
 //                                                                            metrics:nil
 //                                                                              views:_companyList];
 //    
-//    [self.view addConstraint:horizantal];
-//                                     
-//                                     
-//                                     
+    
     
     productViewController = [[ProductVC alloc] init];
     [productViewController view];
@@ -99,11 +110,14 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.companyList count];
+    //return [self.companyList count];
+    NSInteger count = dataAccess.listOfCompanies.count;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -119,33 +133,8 @@
    
     
     //Creating the images
-    
-//    UIImage *apple =[UIImage imageNamed:@"apple.png"];
-//    UIImage *samsung = [UIImage imageNamed:@"samsung.png"];
-//    UIImage *nike =[UIImage imageNamed:@"nike.png"];
-//    UIImage *adidas =[UIImage imageNamed:@"adidas"];
-//
-    
-    
-    //setting up the images for each row
-//    
-//    
-//    switch (indexPath.row) {
-//        case 0:
-//            cell.imageView.image = apple;
-//            break;
-//        case 1:
-//            cell.imageView.image = samsung;
-//            break;
-//        case 2:
-//            cell.imageView.image = nike;
-//            break;
-//        case 3:
-//            cell.imageView.image = adidas;
-//            break;
-//        default:
-//            break;
-//    }
+
+ 
     
     cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
     cell.imageView.layer.cornerRadius = 8.0;
@@ -156,60 +145,87 @@
     
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
+    
+//    DataAccess *companyFromList =  [self.listOfCompanies objectAtIndex:[indexPath row]];
+     Company *companyFromList = [dataAccess.listOfCompanies objectAtIndex:[indexPath row]];
+    
+    
+    
+    cell.textLabel.text = companyFromList.name;
     
     //put the code upp in here
-    cell.imageView.image = [_compnayLogos objectAtIndex:indexPath.row];
+    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;  // [_compnayLogos objectAtIndex:indexPath.row];
     //resixe uiimage
 
     
-  //  cell.imageView.image = [UIImage imageNamed:  [self.companyListOfImages objectAtIndex:[indexPath row]] ];
     
     
-//    cell.textLabel.textAlignment = NSTextAlignmentRight;
     
     return cell;
 }
 
 
-/*
+
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
  // Return NO if you do not want the specified item to be editable.
  return YES;
  }
- */
 
-/*
+
+#pragma mark - Header Color
+
+//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
+//
+//        [headerView setBackgroundColor:[UIColor redColor]];
+//
+//    return headerView;
+//}
+
+
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
  if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+     [dataAccess.listOfCompanies removeObjectAtIndex:indexPath.row];
+     // Delete the row from the data so
+     
+     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
  }
  else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
  }
+     [self.tableView reloadData];
  }
- */
 
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
 
-/*
+//this is the different code to move the cell in other area in the tableview
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    //[_listOfCompanies exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+    
+    Company *temp = dataAccess.listOfCompanies[sourceIndexPath.row];
+    [dataAccess.listOfCompanies removeObjectAtIndex:sourceIndexPath.row];
+    [dataAccess.listOfCompanies insertObject:temp atIndex:destinationIndexPath.row];
+    
+    
+    [self.tableView reloadData];
+    
+}
+
+
+
  // Override to support conditional rearranging of the table view.
  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
  {
  // Return NO if you do not want the item to be re-orderable.
  return YES;
  }
- */
+
 
 
 #pragma mark - Table view delegate
@@ -217,49 +233,42 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    ProductVC *subItems =[[ProductVC alloc] init];
-//    [subItems view];
-  
-   // productViewController = [[ProductVC alloc] init];
-     
-    
-//    subItems.view;
-    if (indexPath.row == 0 ){
-        
-       // [productViewController.products removeObjectAtIndex:0];
-        
-        productViewController.products = productViewController.item;
-       // [productViewController.products removeObjectAtIndex:0];
-        
-    }
-    if (indexPath.row == 1){
-        productViewController.products =  productViewController.item2;
-    }
-    
-    
-    if (indexPath.row == 2){
-        productViewController.products = productViewController.item3;
-    }
-    
-    if (indexPath.row == 3) {
-        productViewController.products = productViewController.item4;
-    }
-        //must have this line 243, otherwise you can't load a specific cell for different rows
-    [productViewController.tableView reloadData];
+//    NSArray *listOfProd = [[dataAccess data]createProduct];
+//    Product *productFromList = [[Product alloc]productName];
 
-    //    if (indexPath.row == 0){
-//        self.productViewController.title = @"Apple mobile devices";
-//    } else  if(indexPath.row ==1){
-//        self.productViewController.title = @"Samsung mobile devices";
 //
-//    } else if(indexPath.row ==2) {
-//        self.productViewController.title = @"Nike";
+    
+    // you dont need all this code belowe you since you have the other one implemented after this one
+    
+    //    subItems.view;
+//    if (indexPath.row == 0 ){
+//
+////        [productViewController.products removeObjectAtIndex:0];
+//        productViewController.products = [dataAccess listOfProduct];
+////        productViewController.products =
+////        productViewController.products = [
 //    }
-//    else if (indexPath.row ==3){
-//        self.productViewController.title = @"Adidas";
+//    if (indexPath.row == 1){
+////        productViewController.products =  dataAccess.listOfProduc  ;
 //    }
-    productViewController.navigationItem.title = self.companyList[indexPath.row];
+//
+//
+
+    
+    
+    
+    Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
+    
+    
+    
+    productViewController.navigationItem.title = companyFromList.name;
+    
+    productViewController.listOfProduct = companyFromList.products;
+    
+//    dataAccess.listOfProduct = companyFromList.products;
+    
+    productViewController.dataAccess = dataAccess;
+    
     [self.navigationController
      pushViewController:productViewController
      animated:YES];
@@ -298,4 +307,5 @@
 // NSArray *_tempArray = @[@"iPad", @"iPod Touch",@"iPhone"];
 
 // productViewController.products =  [NSMutableArray arrayWithArray:productViewController.item];
-// this code up here is a way to convert NSArray to NSMutableArray but it alos creat a seperate array, so keep that in mind 
+    // this code up here is a way to convert NSArray to NSMutableArray but it alos creat a seperate array, so keep that in mind
+

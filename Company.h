@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Product.h"
+#import "CompanyVC.h"
 
 @interface Company : NSObject
+
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *logo;
+@property (nonatomic, retain) NSString *stockPrice;
+
+@property (nonatomic, retain) NSMutableArray<Product*> *products;
+
+-(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo;
+
+
 
 @end

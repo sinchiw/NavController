@@ -10,4 +10,11 @@
 
 @implementation Product
 
+-(instancetype) initWithProductName:(NSString*)productName andProductURL:(NSString*)productURL{
+    self =[super init];
+    self.productName = productName;
+    self.productURL = productURL;
+    return self;
+}
+
 @end
