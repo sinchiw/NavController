@@ -7,15 +7,15 @@
 //
 
 #import "Company.h"
+#import "CompanyInfo.h"
 
 @implementation Company
 
--(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo{
+-(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo andStockPrice:(NSString *)stockPrice{
     self =[super init];
     self.name = name;
     self.logo = logo;
-   // self.logo = logo
-    
+    self.stockPrice = stockPrice;
     return self;
 }
 

@@ -46,21 +46,36 @@
     
 }
 
+-(void)addCompany:(Company *)company {
+    [self.listOfCompanies addObject:company];
+    
+}
+
+-(void)addProduct:(Product *)products withInde:(NSInteger) index {
+    [[self.listOfCompanies[index] products] addObject: products];
+}
+
+
 
 -(void) createCompanies {
-    Company *apple = [[Company alloc]initWithName:@"Apple mobile devices" andLogo:@"apple.png"];
+    Company *apple = [[Company alloc]initWithName:@"Apple mobile devices" andLogo:@"apple.png" andStockPrice:@""];
     //    apple.name = @"Apple mobile devices";
     //    apple.logo = @"apple.png";
     
-    Company *samsung = [[Company alloc]initWithName:@"Samsung mobile devices" andLogo:@"samsung.png"];
+    Company *samsung = [[Company alloc]initWithName:@"Samsung mobile devices" andLogo:@"samsung.png" andStockPrice:@""];
     
     
-    Company *nike =[[[Company alloc] init]initWithName:@"Nike" andLogo:@"nike.png"];
+    Company *nike =[[[Company alloc] init]initWithName:@"Nike" andLogo:@"nike.png" andStockPrice:@""];
     
-    Company *adidas = [[Company alloc] initWithName:@"Adidas" andLogo:@"adidas.png"];
+    Company *adidas = [[Company alloc] initWithName:@"Adidas" andLogo:@"adidas.png" andStockPrice:@""];
     
     self.listOfCompanies = [NSMutableArray arrayWithObjects:apple, samsung, nike, adidas, nil];
 
+//
+//
+//        Company *newCompany = [[Company alloc]initWithName:@"" andLogo:@""];
+//
+//        [self.listOfCompanies addObject:newCompany ];
 }
 
 

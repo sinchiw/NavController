@@ -8,12 +8,13 @@
 
 #import "WKWebVC.h"
 #import "ProductVC.h"
+#import "ProductConf.h"
 
 @import WebKit;
 
 @interface WKWebVC () <WKNavigationDelegate,WKUIDelegate>{
     
-
+    ProductConf *webcontroller;
 
 
 }
@@ -28,32 +29,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode:)];
+    self.navigationItem.rightBarButtonItem = editButton;
 //    // Do any additional setup after loading the view from its nib.
 //    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    // Do any additional setup after loading the view from its nib.
 //
     //this below is an array of site that we need for each product
 //    _website = [NSArray arrayWithObjects:@"https://www.apple.com/ipod-touch/",@"https://www.apple.com/ipod-touch/",@"https://www.apple.com/iphone/",nil];
-    
-    
-    
-    
-    
-    
-
-    
-    
-   
-    
-   
-    
-
-    
-   
-    
-    
-   
-    
 //this is one way of displaying the webpage using UIWebView, but in this one it takes time to load page unlike the Webkit***
 //    UIWebView *webView = [[UIWebView alloc] init];
 //    webView.scalesPageToFit = YES;
@@ -68,9 +53,18 @@
 //    [webView loadRequest:req];
 
   //  CGRect rect = self.view.frame;
+    webcontroller = [[ProductConf alloc] init];
 
     
 }
+- (void)toggleEditMode:(id)sender {
+    
+  
+        self.navigationItem.rightBarButtonItem.title = @"Edit";
+    [self.navigationController pushViewController: webcontroller animated:YES];
+    }
+    
+    
 
 -(void)viewWillAppear:(BOOL)animated {
     // Do any additional setup after loading the view from its nib.

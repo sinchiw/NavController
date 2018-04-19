@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductConf">
+            <connections>
+                <outlet property="productNames1" destination="rWT-i3-fVF" id="0XS-Pg-5sR"/>
+                <outlet property="productURLs" destination="R9N-K7-gcn" id="zVY-5N-UCw"/>
+                <outlet property="productsImage" destination="4cT-nb-yDL" id="Mjo-q6-d7d"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fA-tJ-3K2">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="4ht-3B-APS">
+                            <rect key="frame" x="8" y="110" width="359" height="170"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product Name" textAlignment="natural" minimumFontSize="17" background="Product Name" translatesAutoresizingMaskIntoConstraints="NO" id="rWT-i3-fVF">
+                                    <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="fjt-1C-maE"/>
+                                    </connections>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-K7-gcn">
+                                    <rect key="frame" x="0.0" y="70" width="359" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="tsG-3c-UQY"/>
+                                    </connections>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product Logo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-nb-yDL">
+                                    <rect key="frame" x="0.0" y="140" width="359" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="tIr-jX-zg2"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="359" id="uiD-6A-KDD"/>
+                            </constraints>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogU-ab-ze8">
+                            <rect key="frame" x="120" y="327" width="135" height="35"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                            <color key="textColor" red="1" green="0.1664100828" blue="0.12656962790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4ht-3B-APS" secondAttribute="trailing" constant="8" id="3Xl-gV-ETX"/>
+                        <constraint firstItem="ogU-ab-ze8" firstAttribute="top" secondItem="4ht-3B-APS" secondAttribute="bottom" constant="47" id="GNW-mu-8hr"/>
+                        <constraint firstItem="ogU-ab-ze8" firstAttribute="leading" secondItem="6fA-tJ-3K2" secondAttribute="leading" constant="120" id="N4q-Mf-KiD"/>
+                        <constraint firstItem="4ht-3B-APS" firstAttribute="top" secondItem="6fA-tJ-3K2" secondAttribute="top" constant="110" id="bFj-4K-uDd"/>
+                        <constraint firstItem="4ht-3B-APS" firstAttribute="leading" secondItem="6fA-tJ-3K2" secondAttribute="leading" constant="8" id="mgo-gj-uAl"/>
+                        <constraint firstAttribute="trailing" secondItem="ogU-ab-ze8" secondAttribute="trailing" constant="120" id="wbZ-Hc-jYU"/>
+                        <constraint firstAttribute="bottom" secondItem="4ht-3B-APS" secondAttribute="bottom" constant="387" id="y56-Bb-iQw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6fA-tJ-3K2" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="OId-PJ-Ntu"/>
+                <constraint firstItem="6fA-tJ-3K2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VLi-Y6-7V6"/>
+                <constraint firstItem="6fA-tJ-3K2" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="lcr-VO-l0E"/>
+                <constraint firstItem="6fA-tJ-3K2" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="qX4-jz-SrF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="33.5" y="56.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Product Name" width="16" height="16"/>
+    </resources>
+</document>

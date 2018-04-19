@@ -11,14 +11,16 @@
 #import "Company.h"
 #import "Product.h"
 #import "DataAccess.h"
+#import "CompanyInfo.h"
 
 @interface CompanyVC (){
 
     DataAccess *dataAccess;
 
-  
+    CompanyInfo *companyInfoViewController;
 
    ProductVC *productViewController;
+    
 
 }
 @end
@@ -27,15 +29,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"CompanyVC viewDidLoad called");
-    
+    UINavigationBar *bar = [self.navigationController navigationBar];
+    [bar setBackgroundColor:[UIColor colorWithRed:0.701 green:0.926 blue:0.000 alpha:5.000]];
+    NSLog(@"CompanyVC viewDidLoad called" );
+
     dataAccess = [DataAccess dataAccess];
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
+    //setting up the edit and done button with text
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode)];
-    self.navigationItem.rightBarButtonItem = editButton;
+    self.navigationItem.leftBarButtonItem = editButton;
+    
+    //setting up the button with the image included
+    UIBarButtonItem *add = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Add.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addingButton:)];
+    self.navigationItem.rightBarButtonItem = add;
+
+    
+    
     // this is where you add name in the table cell
    // self.companyList = [NSMutableArray arrayWithObjects: @"Apple mobile devices",@"Samsung mobile devices", @"Nike", @"Adidas",nil];
     // this format is easier than the one below it
@@ -64,31 +74,44 @@
     
     
     
-    //contraint for the text label
-//    NSLayoutConstraint *horizantal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[apple]-7-|"
-//                                                                            options:0
-//                                                                            metrics:nil
-//                                                                              views:_companyList];
-//    
-    
     
     productViewController = [[ProductVC alloc] init];
     [productViewController view];
 
+    companyInfoViewController = [[CompanyInfo alloc] init];
     
     
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // always make sure you have this code
+    [self.tableView reloadData];
+}
+
+-(void) addingButton:(id)sender
+{
+    // dont forget to intailize the other viewcontroller otherwise it wont work.
+    self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"Add.png"];
+    
+    [self.navigationController pushViewController: companyInfoViewController animated:YES];
+//    [self viewWillAppear:YES];
+    
+}
+
+
 
 - (void)toggleEditMode {
     
     if (self.tableView.editing) {
         [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.rightBarButtonItem.title = @"Edit";
+        self.navigationItem.leftBarButtonItem.title = @"Edit";
+      
     } else {
         [self.tableView setEditing:YES animated:NO];
-        self.navigationItem.rightBarButtonItem.title = @"Done";
+        self.navigationItem.leftBarButtonItem.title = @"Done";
     }
-    
+       
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,10 +175,11 @@
     
     
     cell.textLabel.text = companyFromList.name;
-    
+    //cell.
     //put the code upp in here
-    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;  // [_compnayLogos objectAtIndex:indexPath.row];
-    //resixe uiimage
+    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;
+//    [_compnayLogos objectAtIndex:indexPath.row];
+//    resixe uiimage
 
     
     
@@ -233,34 +257,29 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSArray *listOfProd = [[dataAccess data]createProduct];
-//    Product *productFromList = [[Product alloc]productName];
-
-//
-    
-    // you dont need all this code belowe you since you have the other one implemented after this one
-    
-    //    subItems.view;
-//    if (indexPath.row == 0 ){
-//
-////        [productViewController.products removeObjectAtIndex:0];
-//        productViewController.products = [dataAccess listOfProduct];
-////        productViewController.products =
-////        productViewController.products = [
-//    }
-//    if (indexPath.row == 1){
-////        productViewController.products =  dataAccess.listOfProduc  ;
-//    }
-//
-//
-
-    
-    
+    if (self.tableView.editing){
+        Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
+        productViewController.navigationItem.title = companyFromList.name;
+        
+        productViewController.listOfProduct = companyFromList.products;
+        
+        //    dataAccess.listOfProduct = companyFromList.products;
+        
+        productViewController.dataAccess = dataAccess;
+        
+        productViewController.path = [indexPath row];
+        
+        
+        [self.navigationController
+         pushViewController:companyInfoViewController
+         animated:YES];
+        
+        
+        
+    }else{
+        
     
     Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
-    
-    
-    
     productViewController.navigationItem.title = companyFromList.name;
     
     productViewController.listOfProduct = companyFromList.products;
@@ -269,22 +288,33 @@
     
     productViewController.dataAccess = dataAccess;
     
+    productViewController.path = [indexPath row];
+    
     [self.navigationController
      pushViewController:productViewController
      animated:YES];
     
+    
+    }
+    
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//
+//
+//    // Get the new view controller using [segue destinationViewController].
+//    [segue destinationViewController];
+//
+//
+//    // Pass the selected object to the new view controller.
+//
+//
+//}
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];

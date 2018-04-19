@@ -23,6 +23,7 @@
                    initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.navigationController];
     [self.window makeKeyAndVisible];
+
     return YES;
     
     

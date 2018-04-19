@@ -18,7 +18,7 @@
 
 @property (nonatomic, retain) NSMutableArray<Product*> *products;
 
--(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo;
+-(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo andStockPrice:(NSString*)stockPrice;
 
 
 

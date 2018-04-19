@@ -15,7 +15,15 @@
 
 @property (nonatomic, retain) NSMutableArray<Company*> *listOfCompanies;
 //@property (nonatomic, retain) NSMutableArray<Product*> *listOfProduct;
+
 +(DataAccess *) dataAccess;
+
+
+
+//you need this add an object to your array
+-(void)addCompany:(Company*) company;
+-(void)addProduct:(Product *)products withInde:(NSInteger) index;
+//-(void)addProduct:(Company*) products;
 
 //-(instancetype) initWithName:(NSString*)name andLogo:(NSString*) logo;
 //
