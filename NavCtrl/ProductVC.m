@@ -1,3 +1,4 @@
+
 //
 //  ProductVC.m
 //  NavCtrl
@@ -76,8 +77,11 @@
     
     Company *companyFromList2 = [dataAccess2.listOfCompanies objectAtIndex: _path];
     
+    
 
-    productImage.image = [UIImage imageNamed:companyFromList2.logo];
+    productImage.image =  [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:companyFromList2.logo ]]];
+    
+
     
     //this code below here is  another way of setting uo the image.....
     //    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;
@@ -130,27 +134,31 @@
     Product *listFromProduct= [self.listOfProduct objectAtIndex:[indexPath row]];
     cell.textLabel.text = listFromProduct.productName;
     
+    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
+    cell.imageView.layer.cornerRadius = 8.0;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.clipsToBounds = YES;
     
     
-//    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    
+    //    DataAccess *companyFromList =  [self.listOfCompanies objectAtIndex:[indexPath row]];
+  
+    
+    cell.textLabel.text = listFromProduct.productName;
+    
+    //cell.
+    //put the code upp in here
+    cell.imageView.image =  [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:listFromProduct.productLogo ]]]; 
+    //    [_compnayLogos objectAtIndex:indexPath.row];
+    //    resixe uiimage
+
+    
+    
+
     return cell;
-    // setting up the image for each row of the product
-    
-//    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
-//    cell.imageView.layer.cornerRadius = 8.0;
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    cell.imageView.layer.masksToBounds = YES;
-//    cell.imageView.clipsToBounds = YES;
-//
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//
-//    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
-//    cell.imageView.image = [_appleLogo objectAtIndex:indexPath.row];
-    
-//    return cell;
-
-
-
 
 
 
@@ -190,7 +198,7 @@
      // this is to delete a row from the tableview,
      
      [_listOfProduct removeObjectAtIndex:indexPath.row];
-
+//_listOfProduct = 
 //
 //      [self.listOfProduct removeObjectAtIndex:indexPath.row];
      
@@ -225,6 +233,8 @@
     [self.tableView reloadData];
 }
 
+//st up a varible fro interger an couint tp erare the things
+
 
 
 
@@ -247,12 +257,15 @@
      
      
      
-     Product *listFromProduct= [self.listOfProduct objectAtIndex:[indexPath row]];
+     Product *productFromList= [self.listOfProduct objectAtIndex:[indexPath row]];
      
      
-     detailViewController.sites = listFromProduct.productURL;
+     detailViewController.sites = productFromList.productURL;
+     //the NSMUtable array from the detailveiwcontroller is equal to the productlist so that way it sill in the same array 
+     detailViewController.selectedProduct = productFromList;
      
-     NSLog(@"YI site %@", listFromProduct.productURL);
+     
+     NSLog(@"YI site %@", productFromList.productURL);
      
      
 //  Navigation logic may go here, for example:

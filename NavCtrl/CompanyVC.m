@@ -12,9 +12,11 @@
 #import "Product.h"
 #import "DataAccess.h"
 #import "CompanyInfo.h"
+#import "StockFetcher.h"
+#import "StockFetcherDelegate.h"
 
 @interface CompanyVC (){
-
+    StockFetcher *stockfetcher;
     DataAccess *dataAccess;
 
     CompanyInfo *companyInfoViewController;
@@ -30,10 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UINavigationBar *bar = [self.navigationController navigationBar];
-    [bar setBackgroundColor:[UIColor colorWithRed:0.701 green:0.926 blue:0.000 alpha:5.000]];
+    [bar setBarTintColor:[UIColor colorWithRed:0.500 green:0.926 blue:0.000 alpha:5.000]];
     NSLog(@"CompanyVC viewDidLoad called" );
-
+//[self.view addSubview:bar]
     dataAccess = [DataAccess dataAccess];
+
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //setting up the edit and done button with text
@@ -85,16 +88,47 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // always make sure you have this code
-    [self.tableView reloadData];
+    // always make sure you have this code;
+    // this way the stockprice can be generetae at the start of the launchscreen
+    
+    
+    StockFetcher *stockFetcher = [[StockFetcher alloc]init];
+    stockFetcher.delegate = self;
+    
+    
+    
+    //ask koshi
+    // its calling the function from the stockfecther
+    
+    for(Company *company in dataAccess.listOfCompanies){
+        [stockFetcher fetchStockPriceForTicker: company];
+    }
+    
+//    for(int i=0;i<dataAccess.listOfCompanies.count;i++){
+//        Company *company = dataAccess.listOfCompanies[i];
+//        [stockFetcher fetchStockPriceForTicker: company.ticker];
+//    }
+    
+}
+
+-(void)stockFetchSuccess{
+    //reloading the data
+     [self.tableView reloadData];
 }
 
 -(void) addingButton:(id)sender
 {
     // dont forget to intailize the other viewcontroller otherwise it wont work.
-    self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"Add.png"];
+    //self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"Add.png"];
+    companyInfoViewController.title = @"Add New Company";
+//    companyInfoViewController
+    //so the textfield should have nothing written in it when it goes to that viewcontroller and checking if it nill so it can load nothing on the textfield in the Adding View Controller
     
+    companyInfoViewController.selectedCompany = nil;
+//    companyInfoViewController.deleteCompany.hidden = YES;
+
     [self.navigationController pushViewController: companyInfoViewController animated:YES];
+    
 //    [self viewWillAppear:YES];
     
 }
@@ -153,40 +187,51 @@
     // this code below here is another way of setting up the image but its a bit time to configure it
     
     // Configure the cell...
-   
-    
+
     //Creating the images
+//    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
+//    cell.imageView.layer.cornerRadius = 8.0;
+//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    cell.imageView.layer.masksToBounds = YES;
+//    cell.imageView.clipsToBounds = YES;
+//
+//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    CGSize itemSize = CGSizeMake(40, 40);
+    UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
+    CGRect imageRect = CGRectMake(10, 10, itemSize.width, itemSize.height);
+    [cell.imageView.image drawInRect:imageRect];
+    cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 
- 
-    
-    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
-    cell.imageView.layer.cornerRadius = 8.0;
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.clipsToBounds = YES;
-
-    
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
     
 //    DataAccess *companyFromList =  [self.listOfCompanies objectAtIndex:[indexPath row]];
      Company *companyFromList = [dataAccess.listOfCompanies objectAtIndex:[indexPath row]];
+//  NSString *dollarSignPrice = [NSString stringWithFormat:@"askPrice:%@", priceString];
+//    companyFromList.stockPrice
     
-    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", companyFromList.price];
     
     cell.textLabel.text = companyFromList.name;
     //cell.
     //put the code upp in here
-    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;
+//    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;
+    
+    
+    cell.imageView.image =  [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:companyFromList.logo ]]];
+    
 //    [_compnayLogos objectAtIndex:indexPath.row];
 //    resixe uiimage
 
+//    tableView.rowHeight = UITableViewAutomaticDimension;
+//    tableView.estimatedRowHeight = 177;
+//
     
     
     
     
     return cell;
 }
+
 
 
 
@@ -219,6 +264,7 @@
      
      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
  }
+     
  else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
  }
@@ -257,31 +303,34 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
+    
     if (self.tableView.editing){
-        Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
-        productViewController.navigationItem.title = companyFromList.name;
-        
-        productViewController.listOfProduct = companyFromList.products;
-        
-        //    dataAccess.listOfProduct = companyFromList.products;
-        
-        productViewController.dataAccess = dataAccess;
-        
-        productViewController.path = [indexPath row];
         
         
+        companyInfoViewController.title = @"Edit Company";
+        
+        
+        
+        
+        
+        //you made a variable to connect the two viewcontroller toghter in editing mode
+        // the companylsit comes from company viewcontroller
+        companyInfoViewController.selectedCompany = companyFromList;
+        //(int)indexPath.row -
         [self.navigationController
          pushViewController:companyInfoViewController
          animated:YES];
         
         
         
-    }else{
+        
+    } else {
         
     
-    Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
+        
     productViewController.navigationItem.title = companyFromList.name;
-    
+    // this is where th
     productViewController.listOfProduct = companyFromList.products;
     
 //    dataAccess.listOfProduct = companyFromList.products;
@@ -321,6 +370,10 @@
     NSLog(@"CompanyVC viewDidDisappear called");
     
 }
+
+
+
+
 
 - (void)dealloc {
     [_tableView release];

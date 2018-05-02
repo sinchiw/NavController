@@ -8,17 +8,42 @@
 
 #import "ProductConf.h"
 #import "WKWebVC.h"
+#import "DataAccess.h"
+#import "Product.h"
+#import "Company.h"
 
 @interface ProductConf ()
 {
     WKWebVC *webViewController;
+ DataAccess *dataAccess2;
+    Product *products;
+    CompanyVC *prodcutslist;
+    
+    
+//    int *index_path1;
 }
+@property (retain,nonatomic) DataAccess *companyInfo;
 @end
 
 @implementation ProductConf
+- (IBAction)deletefunction:(id)sender {
+//    Company *companyFromList = dataAccess.listOfCompanies[indexPath.row];
+    
+//    [[removeObject: webViewController. ];
+    
+    
+    
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    products = [[Product alloc] init];
+    prodcutslist =[[CompanyVC alloc]init];
+//    [Product *listofParoduct] = self.
+    
+//    dataAccess3 = [[DataAccess alloc] init];
+
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButton:)];
     self.navigationItem.leftBarButtonItem = cancel;
     
@@ -43,7 +68,32 @@
      return true;
     
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+   // Company *companyFromList2 = [dataAccess2.listOfCompanies objectAtIndex: _path];
+//    Product *listFromProduct= [self.listOfProduct objectAtIndex:path];
+    
+    
+//    self.productURLs.text = [_companyInfo.listOfCompanies ];
+    
+    
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    if(self.selectedProduct){
+        self.productNames1.text = _selectedProduct.productName;
+        self.productURLs.text = _selectedProduct.productURL;
+        self.productsImage.text = _selectedProduct.productLogo;
+    }
+    // setting the textfield cleared when you hit the add button
+    else{
+        self.productNames1.text = @"";
+        self.productURLs.text = @"";
+        self.productsImage.text = @"";
+    
 
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -66,6 +116,8 @@
     [_productNames1 release];
     [_productURLs release];
     [_productsImage release];
+//    [_deleteProduct release];
+    [_deletefunction release];
     [super dealloc];
 }
 @end

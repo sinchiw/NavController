@@ -17,14 +17,15 @@
     
     IBOutlet UIStackView *custom;
     CompanyVC *mainViewController;
+    DataAccess *dataaccess3;
 }
 @end
 
 @implementation CompanyInfo
-- (IBAction)cName:(id)sender {
-    
-}
-
+//- (IBAction)cName:(id)sender {
+//
+//}
+//
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,17 +40,45 @@
     
     
     // Do any additional setup after loading the view from its nib.
-    self.title = @"New Company";
+   // self.title = @"New Company";
     
+}
+
+-(void) hidebutton
+{
+    
+    if ([self.navigationItem.title isEqualToString:@"Add New Company"]){
+        //        companyInfoViewController.deleteCompany.hidden =YES;
+        _deleteCompany.hidden = YES;
+        
+    }
+    else {
+        _deleteCompany.hidden = NO;
+    }
 }
 
 -(void) saveButton:(id)sender {
     
     //make a a temp arrar to alloc and creat an object
-    Company *tempCompany = [[Company alloc] initWithName:[_companyName text] andLogo:[_url text] andStockPrice:[_stockPrices text]];
+    if([self.navigationItem.title isEqualToString: @"Edit Company"])    {
+          [[DataAccess dataAccess] edditingCompanyWithID:_companyId withNewName:_companyName.text andCompanyStokSymbol:_stockPrices.text andCompanyLogo:_url.text];
+        
+    } else {
+        Company *tempCompany = [[Company alloc] initWithName:[_companyName text] andLogo:[_url text] andTicker:[_stockPrices text]];
+        
+        [[DataAccess dataAccess] addCompany:tempCompany];
+        //    [self.view endEditing: YES];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
     
-    [[DataAccess dataAccess] addCompany:tempCompany];
-    
+//STILL WORKING ON THE IF AND ELSE STATEMETN TO UPDATE THE CURRENT COMPANY.
+
+
+//    else
+//    {
+////        _selectedCompany = dataaccess3.listOfCompanies;
+//    }
 //    DataAccess *companiesArray = [[DataAccess alloc] init];
 //
 //
@@ -80,16 +109,51 @@
 }
 
 -(void) cancelButton:(id)sender{
-    self.navigationItem.leftBarButtonItem.title = @"Cancel";
+//    [self.url resignFirstResponder];
+//    [self.stockPrices resignFirstResponder];
+//    [self.companyName resignFirstResponder];
+
+    
+    //self.navigationItem.leftBarButtonItem.title = @"Cancel";
+    
+    [self.view endEditing:YES];
+
     [self.navigationController popToRootViewControllerAnimated:YES];
     
     
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+ 
+ 
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self hidebutton];
 
+//    _url.text = @"";
+//    _stockPrices.text = @"";
+//    _companyName.text = @"";
     
+    
+//here where you connect the textfield to corresponding company, existing company.
+    if(self.selectedCompany){
+        self.companyName.text = _selectedCompany.name;
+        self.stockPrices.text = _selectedCompany.ticker;
+        self.url.text = _selectedCompany.logo;
+        _deleteCompany.hidden = NO;
+    }
+    // setting the textfield cleared when you hit the add button
+    else{
+        self.companyName.text = @"";
+        self.stockPrices.text = @"";
+        self.url.text = @"";
+        _deleteCompany.hidden = YES;
+    }
+ // moving the view around when the keyboard shows up.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -104,6 +168,7 @@
 //    
 //}
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //when you hit the return button the keyboard will hide itslef and the view goes back to normal.
     [_url resignFirstResponder];
     [_stockPrices resignFirstResponder];
     [_companyName resignFirstResponder];
@@ -112,21 +177,34 @@
 
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    // when you touch anywhere outside the textfield so the keyboard can hide.
+    [self.url resignFirstResponder];
+    [self.stockPrices resignFirstResponder];
+    [self.companyName resignFirstResponder];
+    
+}
+
+//-(BOOL)textFieldShouldClear:(UITextField *)textField {
+//    return YES;
+//}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+
+    
+    
+     // Clear first responder
+ 
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-    
-    [super viewWillDisappear:animated];
-    // Clear first responder
-    [self.view endEditing:YES];
-    // "Save" changes to item
-//    Company *newCompany2 = self.newCompany1;
-//    newCompany2.name = self.companyName.text;
-//    newCompany2.stockPrice = self.stockPrices.text;
-//    newCompany2.logo = self.url.text;
+
 }
 
 
@@ -159,7 +237,6 @@
 
 
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -173,7 +250,33 @@
     [_companyName release];
     [_stockPrices release];
     [_url release];
-    [custom release];
+    
     [super dealloc];
 }
-@end
+- (IBAction)deletingCompany:(id)sender {
+    
+//    if( [self.navigationItem.title isEqualToString:@"Edit Company"])
+//       {
+////           _deleteCompany.hidden = YES;
+////           trying to hide the button
+//
+//       }
+
+//    mainViewController tableView:(UITableView *) canEditRowAtIndexPath:(NSIndexPath*)NSIndexPath
+//    {
+//
+    //NSIndexPath *deletingRows = [ mainViewController.tableView indexPathForCell:];
+    
+    //self.companyId
+    //[dataaccess3.listOfCompanies removeObjectAtIndex:self.companyId];
+    //since you already  have the selected Compnany as the NSindexpath you just need this code below to remove the row and the cell togh3err
+    
+    [[DataAccess dataAccess].listOfCompanies removeObject:_selectedCompany];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
+}
+
+
+    
+    @end
+    

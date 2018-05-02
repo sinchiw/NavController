@@ -88,6 +88,7 @@
     //this one is different, where you are adding the index toooo
 [[DataAccess dataAccess] addProduct: tempProduct withInde: _path];
     self.navigationItem.rightBarButtonItem.title = @"Save";
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

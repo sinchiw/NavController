@@ -9,18 +9,19 @@
 #import "WKWebVC.h"
 #import "ProductVC.h"
 #import "ProductConf.h"
-
+#import "Company.h"
 @import WebKit;
 
 @interface WKWebVC () <WKNavigationDelegate,WKUIDelegate>{
     
-    ProductConf *webcontroller;
-
-
+    ProductConf *productController;
+    DataAccess *dataccess5;
+    Company *existingProduct;
+    Product *listOfProd;
 }
 
 @property (retain,nonatomic)  WKWebView *webview;
-
+@property (nonatomic, strong) NSMutableArray *products3;
 @end
 
 @implementation WKWebVC
@@ -30,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+   
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode:)];
     self.navigationItem.rightBarButtonItem = editButton;
 //    // Do any additional setup after loading the view from its nib.
@@ -53,20 +54,64 @@
 //    [webView loadRequest:req];
 
   //  CGRect rect = self.view.frame;
-    webcontroller = [[ProductConf alloc] init];
+    productController = [[ProductConf alloc] init];
+    
+    
 
     
 }
 - (void)toggleEditMode:(id)sender {
     
-  
-        self.navigationItem.rightBarButtonItem.title = @"Edit";
-    [self.navigationController pushViewController: webcontroller animated:YES];
-    }
+//  existingProduct = [[ Company alloc] init];
     
+        self.navigationItem.rightBarButtonItem.title = @"Edit";
+    productController.title = @"Edit Product";
+//    listOfProd
+//    dataccess5 *prod222 = dataccess5.listOfCompanies;
+//    Product *listFromProduct= [self.listOfProduct objectAtIndex:[indexPath row]];
+//    existingProduct.products = _listOfProduct2.
+    
+   
+    
+//    webcontroller.selectedProduct = productFromList;
+//    Company* currentCompany = [dataccess5.listOfCompanies objectAtIndex: _path2];
+//    Company *listOfProduct =
+    
+    //NSMutableArray<Product*> *listofPro = currentCompany.products;
+    //setting the NSMUTable arrauy to the this array self.selectprodut when it reference back to ProductVC
+    
+    productController.selectedProduct =  self.selectedProduct;
+    
+     
+  //  productController.productId = _path2;
+
+//    [webcontroller.selectedProduct =
+//    webcontrolle
+    
+    
+//    webcontroller.selectedProduct = existingProduct.
+//    existingProduct.products;
+//    dataccess5.listOfCompanies = _products3;
+    
+//    webcontroller.selectedProduct = self.products3;
+//    webcontroller.selectedProduct = existingProduct.products;
+    //    existingProduct.products = dataccess5.listOfCompanies;
+    
+    [self.navigationController pushViewController: productController animated:YES];
+    
+    }
     
 
 -(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    
+    
+//    Company *companyFromList = dataAccess3.listOfCompanies[indexPath.row];
+//    WKWebVC.navigationItem.title = [dataAccess3.listOfCompanies];
+    //    dataacc.listOfCompanies[indexPath.row];
+
     // Do any additional setup after loading the view from its nib.
     
  
@@ -81,7 +126,9 @@
     
     
     NSURL *nsurl=[NSURL URLWithString: _sites];
+    
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
+    
     //allocating the web page view here below
     self.webview = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
     

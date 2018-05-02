@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductConf">
             <connections>
+                <outlet property="deletefunction" destination="wkJ-YL-txs" id="Ivw-8y-qhb"/>
                 <outlet property="productNames1" destination="rWT-i3-fVF" id="0XS-Pg-5sR"/>
                 <outlet property="productURLs" destination="R9N-K7-gcn" id="zVY-5N-UCw"/>
                 <outlet property="productsImage" destination="4cT-nb-yDL" id="Mjo-q6-d7d"/>
@@ -61,21 +62,25 @@
                                 <constraint firstAttribute="width" constant="359" id="uiD-6A-KDD"/>
                             </constraints>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogU-ab-ze8">
-                            <rect key="frame" x="120" y="327" width="135" height="35"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                            <color key="textColor" red="1" green="0.1664100828" blue="0.12656962790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkJ-YL-txs">
+                            <rect key="frame" x="131" y="336" width="112" height="45"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" red="1" green="0.1664100828" blue="0.12656962790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="deletefunction:" destination="-1" eventType="touchUpInside" id="gJ1-Co-Acr"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="4ht-3B-APS" secondAttribute="trailing" constant="8" id="3Xl-gV-ETX"/>
-                        <constraint firstItem="ogU-ab-ze8" firstAttribute="top" secondItem="4ht-3B-APS" secondAttribute="bottom" constant="47" id="GNW-mu-8hr"/>
-                        <constraint firstItem="ogU-ab-ze8" firstAttribute="leading" secondItem="6fA-tJ-3K2" secondAttribute="leading" constant="120" id="N4q-Mf-KiD"/>
+                        <constraint firstAttribute="trailing" secondItem="wkJ-YL-txs" secondAttribute="trailing" constant="132" id="PO5-J6-GKd"/>
+                        <constraint firstItem="wkJ-YL-txs" firstAttribute="leading" secondItem="6fA-tJ-3K2" secondAttribute="leading" constant="131" id="Xy3-uE-Xn7"/>
                         <constraint firstItem="4ht-3B-APS" firstAttribute="top" secondItem="6fA-tJ-3K2" secondAttribute="top" constant="110" id="bFj-4K-uDd"/>
                         <constraint firstItem="4ht-3B-APS" firstAttribute="leading" secondItem="6fA-tJ-3K2" secondAttribute="leading" constant="8" id="mgo-gj-uAl"/>
-                        <constraint firstAttribute="trailing" secondItem="ogU-ab-ze8" secondAttribute="trailing" constant="120" id="wbZ-Hc-jYU"/>
+                        <constraint firstItem="wkJ-YL-txs" firstAttribute="top" secondItem="4ht-3B-APS" secondAttribute="bottom" constant="56" id="pTb-by-McJ"/>
                         <constraint firstAttribute="bottom" secondItem="4ht-3B-APS" secondAttribute="bottom" constant="387" id="y56-Bb-iQw"/>
                     </constraints>
                 </view>

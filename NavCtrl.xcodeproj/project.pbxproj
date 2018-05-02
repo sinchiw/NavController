@@ -25,6 +25,9 @@
 		9E62FF261E4A33F1002D55B8 /* ProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E62FF241E4A33F1002D55B8 /* ProductVC.m */; };
 		9E62FF271E4A33F1002D55B8 /* ProductVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E62FF251E4A33F1002D55B8 /* ProductVC.xib */; };
 		9E62FF291E4A3982002D55B8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */; };
+		CE12B9362088FA5900F0AD0E /* macbook.png in Resources */ = {isa = PBXBuildFile; fileRef = CE12B9352088FA5800F0AD0E /* macbook.png */; };
+		CE12B93B2088FD7200F0AD0E /* StockFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9392088FD7100F0AD0E /* StockFetcher.m */; };
+		CE12B93D2089046D00F0AD0E /* apple2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE12B93C2089046D00F0AD0E /* apple2.png */; };
 		CE597EB92074007800FA4CCD /* CompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE597EB72074007800FA4CCD /* CompanyInfo.m */; };
 		CE597EBA2074007800FA4CCD /* CompanyInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE597EB82074007800FA4CCD /* CompanyInfo.xib */; };
 		CE597EBE2076646400FA4CCD /* ProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE597EBC2076646400FA4CCD /* ProductInfo.m */; };
@@ -82,6 +85,11 @@
 		9E62FF241E4A33F1002D55B8 /* ProductVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductVC.m; sourceTree = "<group>"; };
 		9E62FF251E4A33F1002D55B8 /* ProductVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductVC.xib; sourceTree = "<group>"; };
 		9E62FF281E4A3982002D55B8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CE12B9352088FA5800F0AD0E /* macbook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = macbook.png; path = "../../../../Downloads/InfoOrganizerDesignAndAssets 2/Assets/Product Images/macbook.png"; sourceTree = "<group>"; };
+		CE12B9382088FD7100F0AD0E /* StockFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StockFetcher.h; path = ../../../../../Downloads/Delegation/Delegation/StockFetcher.h; sourceTree = "<group>"; };
+		CE12B9392088FD7100F0AD0E /* StockFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StockFetcher.m; path = ../../../../../Downloads/Delegation/Delegation/StockFetcher.m; sourceTree = "<group>"; };
+		CE12B93A2088FD7200F0AD0E /* StockFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StockFetcherDelegate.h; path = ../../../../../Downloads/Delegation/Delegation/StockFetcherDelegate.h; sourceTree = "<group>"; };
+		CE12B93C2089046D00F0AD0E /* apple2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple2.png; path = "../../../../Downloads/InfoOrganizerDesignAndAssets 2/Assets/Company Logos/apple2.png"; sourceTree = "<group>"; };
 		CE597EB62074007800FA4CCD /* CompanyInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyInfo.h; sourceTree = "<group>"; };
 		CE597EB72074007800FA4CCD /* CompanyInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyInfo.m; sourceTree = "<group>"; };
 		CE597EB82074007800FA4CCD /* CompanyInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyInfo.xib; sourceTree = "<group>"; };
@@ -203,6 +211,7 @@
 		48A656BA18163BF200746D36 /* NavCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				CE12B9372088FD1B00F0AD0E /* Stockfecther */,
 				CE597EB52074005B00FA4CCD /* AddingCompany */,
 				483796CB1BCBF7A00062D5AB /* AppDelegate */,
 				483796CC1BCBF7C70062D5AB /* ParentViewController */,
@@ -217,9 +226,11 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CE12B93C2089046D00F0AD0E /* apple2.png */,
 				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
+				CE12B9352088FA5800F0AD0E /* macbook.png */,
 				CE776BB52059A0C800A7F15A /* iPad.png */,
 				CE776BB42059A0C700A7F15A /* iPhone.png */,
 				CED0761B206D503A003FC612 /* Add.png */,
@@ -252,6 +263,17 @@
 				48A656D618163BF200746D36 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE12B9372088FD1B00F0AD0E /* Stockfecther */ = {
+			isa = PBXGroup;
+			children = (
+				CE12B9382088FD7100F0AD0E /* StockFetcher.h */,
+				CE12B9392088FD7100F0AD0E /* StockFetcher.m */,
+				CE12B93A2088FD7200F0AD0E /* StockFetcherDelegate.h */,
+			);
+			name = Stockfecther;
+			path = AddingCompany;
 			sourceTree = "<group>";
 		};
 		CE597EB52074005B00FA4CCD /* AddingCompany */ = {
@@ -367,8 +389,10 @@
 				CE597EBA2074007800FA4CCD /* CompanyInfo.xib in Resources */,
 				CEE8BEC6203642F300F856DB /* WKWebVC.xib in Resources */,
 				CEF3C0C120324F2E0030DC0C /* samsung.png in Resources */,
+				CE12B93D2089046D00F0AD0E /* apple2.png in Resources */,
 				9E62FF221E4A33DC002D55B8 /* CompanyVC.xib in Resources */,
 				CE776BB72059A0C800A7F15A /* iPhone.png in Resources */,
+				CE12B9362088FA5900F0AD0E /* macbook.png in Resources */,
 				CEF3C0C220324F2E0030DC0C /* adidas.png in Resources */,
 				CE776BB92059A0C800A7F15A /* ipodtouch.png in Resources */,
 				9E62FF271E4A33F1002D55B8 /* ProductVC.xib in Resources */,
@@ -398,6 +422,7 @@
 			files = (
 				CEBCDE1A2056DD5B004A84E7 /* Product.m in Sources */,
 				9E62FF211E4A33DC002D55B8 /* CompanyVC.m in Sources */,
+				CE12B93B2088FD7200F0AD0E /* StockFetcher.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				CEB45134205C2C3F0085A1FC /* DataAccess.m in Sources */,
 				CE597EC52076795E00FA4CCD /* ProductConf.m in Sources */,
