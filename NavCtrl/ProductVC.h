@@ -20,7 +20,7 @@
 //@property (nonatomic, retain) NSArray *appleLogo;
 @property (nonatomic, retain) NSMutableArray<Product*> *listOfProduct;
 
-
+@property (nonatomic) NSInteger path;
 
 //
 //- (void)moveObjectAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;

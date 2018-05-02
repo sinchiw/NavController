@@ -46,21 +46,61 @@
     
 }
 
+-(void)addCompany:(Company *)company {
+    [self.listOfCompanies addObject: company];
+    
+}
+
+-(void)addProduct:(Product *)products withInde:(NSInteger) index {
+    [[self.listOfCompanies[index] products] addObject: products];
+}
+
+-(void)edditingCompanyWithID:(int) companyID withNewName:(NSString*) newName andCompanyStokSymbol: (NSString*) newSymbol andCompanyLogo: (NSString*) newLogo{
+    Company* updatedCompany = self.listOfCompanies[companyID];
+    updatedCompany.name = newName;
+    updatedCompany.ticker = newSymbol;
+    updatedCompany.logo = newLogo;
+    
+    [self.listOfCompanies replaceObjectAtIndex:companyID withObject:updatedCompany];
+}
+
+-(void)editingProductWithID:(int) productID withCompanyId:(int) companyId withProductName:(NSString*) ProductName andProductLogo:(NSString*) productLogo andProductURL:(NSString*) productURL{
+    
+    Company* currentCompany = self.listOfCompanies[companyId];
+    Product* updatedProducts = currentCompany.products[productID];
+    
+    updatedProducts.productName = ProductName;
+    updatedProducts.productLogo = productLogo;
+    updatedProducts.productURL = productURL;
+    
+    [self.listOfCompanies[companyId].products replaceObjectAtIndex:productID withObject:updatedProducts];
+    
+    
+    
+//    updatedProducts. = self.listOfCompanies[productID];
+//    updatedproduct.products =
+    
+}
 
 -(void) createCompanies {
-    Company *apple = [[Company alloc]initWithName:@"Apple mobile devices" andLogo:@"apple.png"];
+    Company *apple = [[Company alloc]initWithName:@"Apple mobile devices" andLogo:@"http://pngimg.com/uploads/apple_logo/apple_logo_PNG19692.png" andTicker:@"AAPL"];
     //    apple.name = @"Apple mobile devices";
     //    apple.logo = @"apple.png";
     
-    Company *samsung = [[Company alloc]initWithName:@"Samsung mobile devices" andLogo:@"samsung.png"];
+    Company *samsung = [[Company alloc]initWithName:@"Samsung mobile devices" andLogo:@"https://cdn.iconverticons.com/files/png/fb1ec58e6682da83_256x256.png" andTicker:@"SAM"];
     
     
-    Company *nike =[[[Company alloc] init]initWithName:@"Nike" andLogo:@"nike.png"];
+    Company *nike =[[Company alloc] initWithName:@"Nike" andLogo:@"http://pngimg.com/uploads/nike/nike_PNG18.png" andTicker:@"NKE"];
     
-    Company *adidas = [[Company alloc] initWithName:@"Adidas" andLogo:@"adidas.png"];
+    Company *adidas = [[Company alloc] initWithName:@"Adidas" andLogo:@"http://pngimg.com/uploads/adidas/adidas_PNG16.png" andTicker:@"ADS"];
     
     self.listOfCompanies = [NSMutableArray arrayWithObjects:apple, samsung, nike, adidas, nil];
 
+//
+//
+//        Company *newCompany = [[Company alloc]initWithName:@"" andLogo:@""];
+//
+//        [self.listOfCompanies addObject:newCompany ];
 }
 
 
@@ -70,12 +110,15 @@
 Product *appleProduct1 = [[Product alloc]init];
     appleProduct1.productName =  @"iPad";
     appleProduct1.productURL  =  @"https://www.apple.com/ipod-touch/";
+    appleProduct1.productLogo = @"http://www.scanlaninternational.com/wp-content/uploads/revslider/web-product-light-hero/macbookpro.png";
     Product *appleProduct2 = [[Product alloc]init];
     appleProduct2.productName  = @"ipodTouch";
     appleProduct2.productURL   = @"https://www.apple.com/";
+    appleProduct2.productLogo = @"http://www.scanlaninternational.com/wp-content/uploads/revslider/web-product-light-hero/macbookpro.png";
     Product *appleProduct3 = [[Product alloc]init];
     appleProduct3.productName  = @"iPhone";
     appleProduct3.productURL   = @"https://www.apple.com/iphone/";
+    appleProduct3.productLogo = @"http://www.scanlaninternational.com/wp-content/uploads/revslider/web-product-light-hero/macbookpro.png";
     
     self.listOfCompanies[0].products = [ NSMutableArray arrayWithObjects:appleProduct1, appleProduct2, appleProduct3,nil];
 //    appleProduct1.productURL
@@ -85,14 +128,17 @@ Product *appleProduct1 = [[Product alloc]init];
 Product *samsungProduct1 = [[Product alloc]init];
 samsungProduct1.productName = @"Galaxy S4";
 samsungProduct1.productURL  = @"https://www.samsung.com/us/mobile/galaxy/";
+    samsungProduct1.productLogo =@"";
 
 Product *samsungProduct2 = [[Product alloc]init];
 samsungProduct2.productName = @"Galaxy Note";
 samsungProduct2.productURL  = @"https://www.samsung.com/us/mobile/phones/galaxy-note/";
+    samsungProduct1.productLogo =@"";
 
 Product *samsungProduct3 = [[Product alloc]init];
 samsungProduct3.productName = @"Galaxy Tab";
 samsungProduct3.productURL  = @"https://www.samsung.com/us/mobile/tablets/";
+    samsungProduct1.productLogo = @"";
 
 self.listOfCompanies[1].products = [NSMutableArray arrayWithObjects: samsungProduct1, samsungProduct2, samsungProduct3, nil];
 

@@ -1,3 +1,4 @@
+
 //
 //  ProductVC.m
 //  NavCtrl
@@ -12,12 +13,15 @@
 #import "Product.h"
 #import "DataAccess.h"
 #import "Company.h"
-
+#import "ProductInfo.h"
 
 @interface ProductVC (){
 
+    IBOutlet UIImageView *productImage;
+    int *index_path;
     WKWebVC *detailViewController;
-    
+    ProductInfo *productinfo1;
+    Company *companyImage;
     DataAccess *dataAccess2;
 }
 
@@ -33,15 +37,18 @@
 
     NSLog(@"ProductVC viewDidLoad called");
     
-    
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode)];
-    self.navigationItem.rightBarButtonItem = editButton;
-
+    UIBarButtonItem *add1 = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Add.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addingButton1:)];
+    self.navigationItem.rightBarButtonItem = add1;
+//    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEditMode)];
+//    self.navigationItem.rightBarButtonItem = editButton;
+    productinfo1 = [[ProductInfo alloc] init];
     //self.dataAccess
 
     // Do any additional setup after loading the view from its nib.
+
     
-  
+//    [[UIImageView alloc] initWithImage:[UIImage imageNamed:companyFromList2.logo]];
+
 #pragma mark - init
     
 
@@ -50,41 +57,46 @@
     detailViewController = [[WKWebVC alloc] init];
     [detailViewController view];
     
-    
-
-    
-    
-    
-    
-    
-}
-
-- (void)toggleEditMode {
-    
-    if (self.tableView.editing) {
-        [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.rightBarButtonItem.title = @"Edit";
-    } else {
-        [self.tableView setEditing:YES animated:NO];
-        self.navigationItem.rightBarButtonItem.title = @"Done";
-    }
+  
     
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
     
-    [super viewWillAppear:animated];
-    
-  //  self.listOfProduct = self.dataAccess.listOfProduct;
+    //  self.listOfProduct = self.dataAccess.listOfProduct;
     
     [self.tableView reloadData];
     
     NSLog(@"ProductVC viewWillAppear called");
     
-//    [self cells];
-  
-//    [self.removeTempArray:_tempArray];
+    //    [self cells];
+    
+    //    [self.removeTempArray:_tempArray];
+    
+    Company *companyFromList2 = [dataAccess2.listOfCompanies objectAtIndex: _path];
+    
+    
+
+    productImage.image =  [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:companyFromList2.logo ]]];
+    
+
+    
+    //this code below here is  another way of setting uo the image.....
+    //    cell.imageView.image =  [UIImage imageNamed:companyFromList.logo] ;
+//    [productImage setImage: [UIImage imageNamed:companyFromList2.logo]];
+}
+
+-(void) addingButton1:(id)sender
+{
+    // dont forget to intailize the other viewcontroller otherwise it wont work.
+    self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"Add.png"];
+    //passing data betwewen two view controlelr 
+    productinfo1.path = _path;
+    [self.navigationController pushViewController:productinfo1  animated:YES];
+    //    [self viewWillAppear:YES];
+    
 }
 
 
@@ -118,29 +130,35 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
+   
     Product *listFromProduct= [self.listOfProduct objectAtIndex:[indexPath row]];
+    cell.textLabel.text = listFromProduct.productName;
+    
+    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
+    cell.imageView.layer.cornerRadius = 8.0;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.clipsToBounds = YES;
+    
+    
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    
+    //    DataAccess *companyFromList =  [self.listOfCompanies objectAtIndex:[indexPath row]];
+  
     
     cell.textLabel.text = listFromProduct.productName;
     
-//    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
+    //cell.
+    //put the code upp in here
+    cell.imageView.image =  [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString:listFromProduct.productLogo ]]]; 
+    //    [_compnayLogos objectAtIndex:indexPath.row];
+    //    resixe uiimage
+
+    
+    
+
     return cell;
-    // setting up the image for each row of the product
-    
-//    cell.imageView.frame = CGRectMake(0.0f, 0.0f, 26.0f, 10.0f);
-//    cell.imageView.layer.cornerRadius = 8.0;
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    cell.imageView.layer.masksToBounds = YES;
-//    cell.imageView.clipsToBounds = YES;
-//
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//
-//    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
-//    cell.imageView.image = [_appleLogo objectAtIndex:indexPath.row];
-    
-//    return cell;
-
-
-
 
 
 
@@ -180,7 +198,7 @@
      // this is to delete a row from the tableview,
      
      [_listOfProduct removeObjectAtIndex:indexPath.row];
-
+//_listOfProduct = 
 //
 //      [self.listOfProduct removeObjectAtIndex:indexPath.row];
      
@@ -215,6 +233,8 @@
     [self.tableView reloadData];
 }
 
+//st up a varible fro interger an couint tp erare the things
+
 
 
 
@@ -237,12 +257,15 @@
      
      
      
-     Product *listFromProduct= [self.listOfProduct objectAtIndex:[indexPath row]];
+     Product *productFromList= [self.listOfProduct objectAtIndex:[indexPath row]];
      
      
-     detailViewController.sites = listFromProduct.productURL;
+     detailViewController.sites = productFromList.productURL;
+     //the NSMUtable array from the detailveiwcontroller is equal to the productlist so that way it sill in the same array 
+     detailViewController.selectedProduct = productFromList;
      
-     NSLog(@"YI site %@", listFromProduct.productURL);
+     
+     NSLog(@"YI site %@", productFromList.productURL);
      
      
 //  Navigation logic may go here, for example:
@@ -318,6 +341,7 @@
 
 - (void)dealloc {
     [_tableView release];
+    [productImage release];
     [super dealloc];
 }
 

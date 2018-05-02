@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *productLogo;
 @property (nonatomic, strong) NSString *productURL;
 
--(instancetype) initWithProductName:(NSString*)productName andProductURL:(NSString*) productURL;
+-(instancetype) initWithProductName:(NSString*)productName andProductURL:(NSString*) productURL andProductLogo:(NSString*) productLogo;
 
 
 

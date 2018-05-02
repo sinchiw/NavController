@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ProductVC;
+#import "StockFetcherDelegate.h"
 
-@interface CompanyVC : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@class ProductVC;
+// call the delegates of the stockfecther 
+@interface CompanyVC : UIViewController<UITableViewDelegate, UITableViewDataSource,  StockFetcherDelegate>
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 //@property (nonatomic, retain) NSMutableArray *companyList;
